@@ -44,7 +44,6 @@ db.tag.belongsToMany(db.tutorials, {
     foreignKey: "tutorial_id",
   });
   
-
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 

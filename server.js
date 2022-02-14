@@ -17,7 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // database
 const db = require("./app/models");
+const Usuario = db.user;
 const Role = db.role;
+const UserRole = db.user_roles;
 const Tutorial = db.tutorials;
 const Tag = db.tag;
 
@@ -30,6 +32,20 @@ db.sequelize.sync({ force: true }).then(() => {
 });
 
 function initial() {
+    Usuario.create({
+        id: 1,
+        username: "usuario",
+        email: "user@user.com",
+        password: "$2a$08$UqBo2ZEwuQvo4.uEl7eigOQpgO.SFGBmqNZlTBCFUZqh/cMJ.okQC"
+
+    })
+    Usuario.create({
+        id: 2,
+        username: "administrador",
+        email: "admin@admin.com",
+        password: "$2a$08$WNtE0Ead3IqNIqOfGqkWiuNag5gO1sZkUmF1qllkBwF7mZkIJDbYq"
+    })
+
     Role.create({
         id: 1,
         name: "user"
@@ -44,7 +60,17 @@ function initial() {
         id: 3,
         name: "admin"
     });
+/*
+    UserRole.create({
+        roleId: 1,
+        userId: 1
+    })
 
+    UserRole.create({
+        roleId: 3,
+        userId: 2
+    })
+*/
     const tut1 = Tutorial.create({
         id: 1,
         title: "Titulo 1",
